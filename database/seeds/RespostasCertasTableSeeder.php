@@ -13,7 +13,7 @@ class RespostasCertasTableSeeder extends Seeder
     {
         DB::table('respostas_certas')->insert([
 	        'curso_id'     => 1,
-	        'questao_id'     => 3,
+	        'questao_id'     => 1,
 	        'alternativa_id' => 4,	        
 	    ]);
     }

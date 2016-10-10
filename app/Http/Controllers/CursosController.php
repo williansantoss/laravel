@@ -49,8 +49,8 @@ class CursosController extends Controller
     public function show($id)
     {
         $curso = DB::table('cursos')->where('id', $id)->value('nome');
-        $questao = DB::table('questoes')->where('curso_id', $id)->get();       
-        $alternativas = DB::table('alternativas')->where('questao_id', 3)->get();
+        $questao = DB::table('questoes')->where('curso_id', $id)->get();      
+        $alternativas = DB::table('alternativas')->where('curso_id', $id)->get();
        
         
         return view('cursos.curso', compact('curso', 'questao', 'alternativas'));

@@ -16,7 +16,7 @@ class CreateQuestoesTable extends Migration
         Schema::create('questoes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('curso_id')->unsigned();
-            $table->foreign('curso_id')->references('id')->on('cursos');
+            $table->foreign('curso_id')->references('id')->on('cursos');  
             $table->string('descricao_pergunta', 500);       
             $table->timestamp('created_at')->nullable();
         });

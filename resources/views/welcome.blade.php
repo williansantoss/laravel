@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -7,7 +7,7 @@
 
         <title>Laravel</title>
 
-        <!-- Fonts -->
+        
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">       
             
     </head>
@@ -38,8 +38,8 @@
             </div>
         </div>
     </body>
-</html> 
-<!-- <style>
+</html>  -->
+<style>
 /*------------------------------------------------------------------------------------CSS GERAL*/
 *{padding: 0; margin: 0; box-sizing:border-box; list-style: none; text-decoration: none; }
 
@@ -99,7 +99,6 @@ footer{height: 230px; width: 100%; background-color: #d8f1f3;}
 <html lang="pt-br">
 <head>
 <meta charset="utf-8">
-<title>TESTE</title>
 <meta name="name" description="descrever aqui">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="estilo.css">
@@ -110,7 +109,7 @@ footer{height: 230px; width: 100%; background-color: #d8f1f3;}
         <header>
             <nav>
                 <div class="menu">
-                    <div class="logo"><a href="index.html"><img src="area-aluno/img/logo.png"></a></div>
+                    <div class="logo"><a href="{{ url('/') }}"><img src="/img/logo.png"></a></div>
                     <ul>
                         <li><a class="entrar" href="{{ url('/login') }}">entrar</a></li>
                         <li><a href="{{ url('/register') }}">cadastre-se</a></li>
@@ -121,8 +120,8 @@ footer{height: 230px; width: 100%; background-color: #d8f1f3;}
                 <p>Estudos para Concurso e OAB <br><br><a class="matricule-se" href="{{ url('/register') }}">Matricule-se</a></p>
             
         </header>
-        <img class="livro-azul" src="area-aluno/img/livro-azul.png" alt="livro ilustrado"/>
-        <img class="livro-laranja" src="area-aluno/img/livro-laranja.png" alt="livro ilustrado"/>
+        <img class="livro-azul" src="/img/livro-azul.png" alt="livro ilustrado"/>
+        <img class="livro-laranja" src="/img/livro-laranja.png" alt="livro ilustrado"/>
         <section>
             <article>
                 <div class="video">
@@ -159,4 +158,4 @@ footer{height: 230px; width: 100%; background-color: #d8f1f3;}
 
         </footer>
     </body>
-</html> -->
+</html> 

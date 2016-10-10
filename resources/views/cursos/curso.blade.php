@@ -7,13 +7,17 @@
 		<div class="col-md-12">
 			<section id="questoes">						    	
 		    	<div>  			        	
-		        	{{ $questao }}
-		        </div>
-		        <div class="alternativas">
-		        	@foreach ($alternativas as $alternativa)
-					     <p>{{ $alternativa->descricao_alternativa }}</p>
-					@endforeach	            
-		        </div>	
+		        	@foreach ($questao as $quest)					     
+					    <p>{{ $quest->descricao_pergunta }}</p>	
+
+					    @foreach ($alternativas as $alternativa)
+						    @if ($alternativa->questao_id == $quest->id)
+						    	<p>{{ $alternativa->descricao_alternativa }}</p>
+						    @endif	
+						@endforeach	
+
+					@endforeach
+		        </div>  
 			</section>
 		</div>		
 	</div>
