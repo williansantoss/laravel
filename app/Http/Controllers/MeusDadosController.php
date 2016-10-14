@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+Use DB;
 
 class MeusDadosController extends Controller
 {
@@ -58,7 +59,13 @@ class MeusDadosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $profile = DB::table('users')->where('id', $id)->get();
+        $nome = $profile[0]->name;
+        $email = $profile[0]->email;   
+        
+        
+        return  view('meusdados.meusdados', compact('nome','email'));  
+        //return view('cursos.curso', compact('curso', 'questao', 'alternativas'));
     }
 
     /**

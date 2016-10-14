@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests; 
-use DB;
+use App\Cursos;
 
 class CursosController extends Controller
 {
@@ -14,11 +14,12 @@ class CursosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $cursos = Cursos::orderBy('id','DESC')->paginate(5);
+        return view('cursos.index',compact('cursos'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -26,9 +27,8 @@ class CursosController extends Controller
      */
     public function create()
     {
-        //
+        return view('cursos.create');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -37,9 +37,13 @@ class CursosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nome' => 'required',           
+        ]);
+        Cursos::create($request->all());
+        return redirect()->route('cursos.index')
+                        ->with('success','Cursos created successfully');
     }
-
     /**
      * Display the specified resource.
      *
@@ -48,14 +52,9 @@ class CursosController extends Controller
      */
     public function show($id)
     {
-        $curso = DB::table('cursos')->where('id', $id)->value('nome');
-        $questao = DB::table('questoes')->where('curso_id', $id)->get();      
-        $alternativas = DB::table('alternativas')->where('curso_id', $id)->get();
-       
-        
-        return view('cursos.curso', compact('curso', 'questao', 'alternativas'));
+        $cursos = Cursos::find($id);
+        return view('cursos.show',compact('cursos'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -64,9 +63,9 @@ class CursosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cursos = Cursos::find($id);
+        return view('cursos.edit',compact('cursos'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -76,9 +75,13 @@ class CursosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nome' => 'required',           
+        ]);
+        Cursos::find($id)->update($request->all());
+        return redirect()->route('cursos.index')
+                        ->with('success','Curso updated successfully');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -87,6 +90,8 @@ class CursosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Cursos::find($id)->delete();
+        return redirect()->route('cursos.index')
+                        ->with('success','Curso deleted successfully');
     }
 }

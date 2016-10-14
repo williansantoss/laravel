@@ -59,12 +59,12 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="{{ url('/meus-dados') }}">
+                                    <a href="{{ url('/meus-dados/1') }}">
                                         Meus Dados
                                     </a>                                   
                                 </li>
                                 <li>
-                                    <a href="{{ url('/assinatura') }}">
+                                    <a href="{{ url('/cursos') }}">
                                         Minha Assinatura
                                     </a>                                  
                                 </li>
