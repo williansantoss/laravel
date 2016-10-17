@@ -59,13 +59,23 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="{{ url('/meus-dados/1') }}">
+                                    <a href="{{ url('/meusdados') }}">
                                         Meus Dados
                                     </a>                                   
                                 </li>
                                 <li>
-                                    <a href="{{ url('/cursos') }}">
+                                    <a href="{{ url('/assinatura') }}">
                                         Minha Assinatura
+                                    </a>                                  
+                                </li>
+                                <li>
+                                    <a href="{{ url('/cursos') }}">
+                                        Cursos
+                                    </a>                                  
+                                </li>
+                                <li>
+                                    <a href="{{ url('/simulado') }}">
+                                        Simulado
                                     </a>                                  
                                 </li>
                                 <li>
@@ -85,7 +95,7 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav>    
 
     @yield('content')
 

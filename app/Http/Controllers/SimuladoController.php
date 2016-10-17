@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests; 
-use App\Cursos;
+use App\Http\Requests;
+use App\Questoes;
 
-class CursosController extends Controller
+class SimuladoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,10 @@ class CursosController extends Controller
      */
     public function index(Request $request)
     {
-        $cursos = Cursos::orderBy('id','ASC')->paginate(5);
-        return view('cursos.index',compact('cursos'))
+        $cursos = Questoes::orderBy('id','DESC')->paginate(5);
+        return view('simulado.index',compact('cursos'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
+            
     }
     /**
      * Show the form for creating a new resource.
@@ -27,7 +28,7 @@ class CursosController extends Controller
      */
     public function create()
     {
-        return view('cursos.create');
+        return view('simulado.create');
     }
     /**
      * Store a newly created resource in storage.
@@ -40,8 +41,8 @@ class CursosController extends Controller
         $this->validate($request, [
             'nome' => 'required',           
         ]);
-        Cursos::create($request->all());
-        return redirect()->route('cursos.index')
+        Questoes::create($request->all());
+        return redirect()->route('simulado.index')
                         ->with('success','Cursos created successfully');
     }
     /**
@@ -52,8 +53,8 @@ class CursosController extends Controller
      */
     public function show($id)
     {
-        $cursos = Cursos::find($id);
-        return view('cursos.show',compact('cursos'));
+        $cursos = Questoes::find($id);
+        return view('simulado.show',compact('cursos'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -63,8 +64,8 @@ class CursosController extends Controller
      */
     public function edit($id)
     {
-        $cursos = Cursos::find($id);
-        return view('cursos.edit',compact('cursos'));
+        $cursos = Questoes::find($id);
+        return view('simulado.edit',compact('cursos'));
     }
     /**
      * Update the specified resource in storage.
@@ -78,8 +79,8 @@ class CursosController extends Controller
         $this->validate($request, [
             'nome' => 'required',           
         ]);
-        Cursos::find($id)->update($request->all());
-        return redirect()->route('cursos.index')
+        Questoes::find($id)->update($request->all());
+        return redirect()->route('simulado.index')
                         ->with('success','Curso updated successfully');
     }
     /**
@@ -90,8 +91,8 @@ class CursosController extends Controller
      */
     public function destroy($id)
     {
-        Cursos::find($id)->delete();
-        return redirect()->route('cursos.index')
+        Questoes::find($id)->delete();
+        return redirect()->route('simulado.index')
                         ->with('success','Curso deleted successfully');
     }
 }

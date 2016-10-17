@@ -44,51 +44,33 @@ input[type=radio]{cursor:pointer;}
 .menu-lateral li:hover{background: #afdbdb;}
 .clearfix{clear:both;}
 </style>
-<div class="container">    
-    <section>
-        <article>
-            <div class="simulados col-md-12">
-                <div class="video-pdf col-md-4">
-                    <div class="video">
-                        <img src="img/video-icone.png" alt="icone de video"/>
-                        <a href="#">ver video</a>
-                    </div>
-                    <div class="pdf">
-                        <img src="img/pdf-icone.png" alt="icone de video"/>
-                        <a href="#">ler pdf</a>
-                    </div>                
-                </div> 
-                <div class="titulo col-md-8">
-                        <h1>Direito do Trabalho</h1>
-                        <div class="explicacao"><p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla."</p>
-                        <a class="questoes-botao" href="{{ url('/cursos/1') }}">Questões<a/>
-                        </div>                    
-                </div> 
-                         
+<div class="container"> 
+    <div class="col-md-12">
+        <h1>Meus Cursos</h1>
+        @foreach ($assinaturas as $assinatura)
+            <div class="row">
+                {{ ++$i }}
+                <div class="col-xs-6 col-lg-4">
+                    <h2>{{ $assinatura->id}}</h2>
+                    
+                    <p><a class="btn btn-info" href="#" role="button">Acessar &raquo;</a></p>
+                </div><!--/.col-xs-6.col-lg-4-->
             </div>
-            <div class="clearfix"></div>
-            
-            <div class="simulados col-md-12">
-                <div class="video-pdf col-md-4">
-                    <div class="video">
-                        <img src="img/video-icone.png" alt="icone de video"/>
-                        <a href="#">ver video</a>
-                    </div>
-                    <div class="pdf">
-                        <img src="img/pdf-icone.png" alt="icone de video"/>
-                        <a href="#">ler pdf</a>
-                    </div>                
-                </div> 
-                <div class="titulocol-md-8">
-                        <h1>Direito Processual do Trabalho</h1>
-                        <div class="explicacao"><p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla."</p>
-                        <a class="questoes-botao" href="{{ url('/cursos/2') }}">Questões<a/>
-                        </div>                    
-                </div> 
-                         
-            </div>
-            <div class="clearfix"></div>
-        </article>
-    </section>
+        @endforeach        
+        <br>
+        <div class="simulados row">
+            <div><h1>Cursos Disponíveis</h1></div>           
+            <div class="col-xs-6 col-lg-4">
+              <h2>Direito</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-success" href="#" role="button">Assinar &raquo;</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-6 col-lg-4">
+              <h2>Direito 2</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn btn-success" href="#" role="button">Assinar &raquo;</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->            
+        </div><!--/row-->                
+    </div>          
 </div>
 @endsection

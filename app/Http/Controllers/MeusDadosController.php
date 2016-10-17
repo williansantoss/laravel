@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-Use DB;
+Use App\User;
 
 class MeusDadosController extends Controller
 {
@@ -14,11 +14,12 @@ class MeusDadosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {        
-        return view('meusdados.meusdados');
+    public function index(Request $request)
+    {
+        $cursos = User::orderBy('id','DESC')->paginate(5);
+        return view('meusdados.index',compact('cursos'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -26,9 +27,8 @@ class MeusDadosController extends Controller
      */
     public function create()
     {
-        //
+        return view('meusdados.create');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -37,9 +37,13 @@ class MeusDadosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nome' => 'required',           
+        ]);
+        User::create($request->all());
+        return redirect()->route('meusdados.index')
+                        ->with('success','Cursos created successfully');
     }
-
     /**
      * Display the specified resource.
      *
@@ -48,9 +52,9 @@ class MeusDadosController extends Controller
      */
     public function show($id)
     {
-        //
+        $cursos = User::find($id);
+        return view('meusdados.show',compact('cursos'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -59,15 +63,9 @@ class MeusDadosController extends Controller
      */
     public function edit($id)
     {
-        $profile = DB::table('users')->where('id', $id)->get();
-        $nome = $profile[0]->name;
-        $email = $profile[0]->email;   
-        
-        
-        return  view('meusdados.meusdados', compact('nome','email'));  
-        //return view('cursos.curso', compact('curso', 'questao', 'alternativas'));
+        $cursos = User::find($id);
+        return view('meusdados.edit',compact('cursos'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -77,9 +75,13 @@ class MeusDadosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nome' => 'required',           
+        ]);
+        User::find($id)->update($request->all());
+        return redirect()->route('meusdados.index')
+                        ->with('success','Curso updated successfully');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -88,6 +90,8 @@ class MeusDadosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+        return redirect()->route('meusdados.index')
+                        ->with('success','Curso deleted successfully');
     }
 }
